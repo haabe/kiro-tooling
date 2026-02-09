@@ -1,0 +1,54 @@
+#!/bin/sh
+#
+# Git pre-commit hook for Node Pulse Tracker
+#
+# This hook runs the validation pipeline before allowing commits.
+# It ensures that all code meets the project's quality standards:
+# - Zero TypeScript errors
+# - All Biome formatting/linting rules pass  
+# - All tests pass (unit + property + integration)
+#
+# To bypass this hook (NOT RECOMMENDED), use: git commit --no-verify
+#
+
+echo "🔍 Running pre-commit validation..."
+
+# Check if we're in the right directory
+if [ ! -f "package.json" ]; then
+    echo "❌ Error: Not in project root directory"
+    exit 1
+fi
+
+# Check if pnpm is available
+if ! command -v pnpm >/dev/null 2>&1; then
+    echo "❌ Error: pnpm is not installed or not in PATH"
+    echo "Please install pnpm: https://pnpm.io/installation"
+    exit 1
+fi
+
+# Run the validation pipeline
+echo "📝 Running TypeScript type check..."
+if ! pnpm run typecheck; then
+    echo "❌ TypeScript errors found. Please fix them before committing."
+    echo "Run 'pnpm run typecheck' to see the errors."
+    exit 1
+fi
+
+echo "🎨 Running linting and formatting checks..."
+if ! pnpm run lint; then
+    echo "❌ Linting errors found. Please fix them before committing."
+    echo "Run 'pnpm run lint --write' to auto-fix formatting issues."
+    exit 1
+fi
+
+echo "🧪 Running tests..."
+if ! pnpm run test; then
+    echo "❌ Tests failed. Please fix them before committing."
+    echo "Run 'pnpm run test' to see the failing tests."
+    exit 1
+fi
+
+echo "✅ All validation checks passed!"
+echo "🚀 Proceeding with commit..."
+
+exit 0

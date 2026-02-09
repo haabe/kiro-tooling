@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Integration Validation",
+  "description": "Validates integration points when components or store files are modified",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/src/components/**/*.tsx",
+      "**/src/components/**/*.ts",
+      "**/src/store/**/*.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A component or store file was modified. Validate integration points to prevent orphaned components and missing connections.\n\n**Integration Validation Checklist:**\n\n1. **Component → App.tsx Integration** (if new component):\n   - Is component imported in App.tsx or parent component?\n   - Is component rendered in the component tree?\n   - Is component visible in the correct location?\n   - If not integrated: List where it should be imported/rendered\n\n2. **Component → Store Integration** (if component uses state):\n   - Does component import useStore hook?\n   - Does component call useStore(state => state.property)?\n   - Are all needed store actions/state accessed?\n   - If missing: List required store imports\n\n3. **Store → Persistence Integration** (if store modifies data):\n   - Do state-modifying actions call persistence adapter?\n   - Is persistence called after state updates?\n   - Is error handling in place for persistence failures?\n   - If missing: List where persistence should be called\n\n4. **Store → Components Integration** (if store action added):\n   - Is new store action used in any component?\n   - If not used yet: Is this expected (will be used in next task)?\n   - If should be used: List components that should use it\n\n5. **CSS Integration** (if new component):\n   - Are component styles imported?\n   - Are third-party library styles imported (e.g., ReactFlow)?\n   - Are global styles imported in main.tsx?\n   - If missing: List required CSS imports\n\n6. **Type Exports** (if new types defined):\n   - Are types exported from the file?\n   - Are types imported where needed?\n   - Are barrel exports (index.ts) updated?\n   - If missing: List where types should be exported/imported\n\n**If integration issues found:**\n- List specific issues with file locations\n- Provide code snippets showing correct integration\n- Suggest which files need to be modified\n\n**If integration is correct:**\n- Confirm all integration points are properly connected\n- Note any follow-up integration needed in future tasks\n\n**If this is work-in-progress:**\n- Note that integration will be completed in subsequent tasks\n- No action needed if this is expected\n\n**IMPORTANT**: Only flag issues if integration SHOULD be complete based on current task. Don't flag missing integration if it's planned for future tasks."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Task Completion Validation",
+  "description": "Validates that tasks marked complete actually meet all acceptance criteria and validation requirements",
+  "version": "2",
+  "when": {
+    "type": "postToolUse",
+    "toolTypes": ["spec"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A spec tool was just used (likely taskStatus to mark a task complete). Check if any task was just marked complete (status changed to 'completed').\n\n**If a task was marked complete, validate:**\n\n1. **File Validation**:\n   - All files specified in task exist\n   - Files contain expected changes (not empty/placeholder)\n   - No TODO or FIXME comments in new code\n\n2. **Code Quality**:\n   - Run getDiagnostics on all modified files\n   - Zero TypeScript errors\n   - Zero linting errors\n   - No `any` types introduced\n\n3. **Testing**:\n   - All unit tests pass\n   - All property tests pass (if applicable)\n   - Minimum 100 iterations for property tests\n   - Tests use REAL implementation (no mocking code under test)\n   - Tests validate ACTUAL behavior (not simplified)\n\n4. **Browser Validation** (if UI task):\n   - Feature visible in browser\n   - No console errors\n   - Interactions work as expected\n   - State updates correctly\n\n5. **Acceptance Criteria**:\n   - All task acceptance criteria met\n   - Observable outcomes verified\n   - Edge cases handled\n\n6. **Integration** (if applicable):\n   - Component wired to App.tsx (if new component)\n   - Store connected to components (if state management)\n   - Persistence called where needed (if data changes)\n\n**If validation fails:**\n- Revert task status to in-progress using taskStatus tool\n- List specific issues found\n- Provide actionable steps to fix\n\n**If validation passes:**\n- Confirm task is truly complete\n- Note any follow-up tasks needed\n\n**If no task was marked complete:**\n- No action needed, just acknowledge the tool use"
+  }
+}

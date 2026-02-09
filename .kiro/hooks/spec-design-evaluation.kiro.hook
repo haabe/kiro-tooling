@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Spec Design Evaluation",
+  "description": "Triggers technical and UX evaluation when a spec design document is created",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": [
+      "**/.kiro/specs/**/design.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A spec design document has been created. According to the Spec Evaluation Framework, the design phase requires technical and UX validation.\n\n**Your task:**\n1. Review the design document for technical completeness:\n   - Architecture alignment with existing systems\n   - Component interfaces and data models\n   - State management patterns\n   - Persistence strategy\n   - Error handling approach\n   - Performance considerations\n   - Security measures\n\n2. Review the design document for UX completeness:\n   - User journey mapping\n   - Component hierarchy and layout\n   - Interaction patterns\n   - Accessibility considerations\n   - Mobile responsiveness\n   - Error states and recovery flows\n\n3. Validate correctness properties:\n   - Are properties testable and verifiable?\n   - Do properties cover all acceptance criteria?\n   - Are property-based tests feasible with available tools?\n\n4. Check integration completeness (per spec-integration.md):\n   - Is the entry point (main.tsx → App.tsx) specified?\n   - Are component connections documented?\n   - Is state management wiring clear?\n   - Is persistence integration detailed?\n   - Are browser compatibility issues addressed?\n\n**Output:**\nUpdate `.kiro/specs/[spec-name]/EVALUATION.md` with design phase evaluation results, including:\n- Technical feasibility assessment\n- UX validation results\n- Integration completeness check\n- Action items for design improvements\n\nIf critical design gaps are found, flag them as blockers before moving to implementation."
+  }
+}

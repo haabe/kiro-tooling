@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Spec Evaluation Review",
+  "description": "Triggers Product Trio evaluation when a new spec requirements document is created or significantly modified",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": [
+      "**/.kiro/specs/**/requirements.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A new spec requirements document has been created. According to the Spec Evaluation Framework, this spec requires review by the Product Trio (Product Manager, Engineering Lead, UX/UI Designer).\n\n**Your task:**\n1. Analyze the spec to identify which specialist roles are needed beyond the Product Trio\n2. Simulate the Product Trio evaluation by considering:\n   - **Product Manager perspective**: Business value, user impact, ROI, market validation\n   - **Engineering Lead perspective**: Technical feasibility, architecture fit, performance, security\n   - **UX/UI Designer perspective**: User journey, accessibility, design consistency, mobile responsiveness\n3. Identify any required specialist evaluators based on spec content (e.g., Security Engineer for auth features, Performance Engineer for real-time features)\n4. Create an evaluation record documenting:\n   - Required evaluation team members\n   - Key evaluation criteria for each role\n   - Potential concerns or gaps to address\n   - Recommended action items before implementation\n\n**Output format:**\nCreate a file `.kiro/specs/[spec-name]/EVALUATION.md` with the evaluation record following the template in the Spec Evaluation Framework.\n\n**Critical checks:**\n- Does the spec include evidence-based documentation (user research, technical benchmarks, business data)?\n- Are value propositions clearly articulated (user value, product value, company value)?\n- Are tasks properly specified with files, dependencies, and acceptance criteria?\n- Are there any missing sections or \"black holes\" in the spec?\n\nIf critical gaps are found, list them as action items that must be addressed before implementation begins."
+  }
+}
