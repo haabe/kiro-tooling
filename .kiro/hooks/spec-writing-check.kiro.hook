@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Spec Writing Check",
+  "description": "Injects spec quality rules before writing spec files",
+  "version": "1",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "You are about to write a file. If it is in `.kiro/specs/`, ensure:\n\n- Requirements use EARS pattern (GIVEN-WHEN-THEN for acceptance criteria)\n- Acceptance criteria are testable, observable, and unambiguous\n- Correctness properties are universally quantified ('for any X, property Y holds')\n- Properties link to requirements: 'Validates: Requirements X.Y'\n- project evaluation criteria met: Zustand+Immer+Zod stack fit, ReactFlow compatibility, IndexedDB private browsing, accessibility (Riley persona)\n- Refer to `.kiro/steering/spec-phases.md` for phase exit criteria\n\nIf the file is NOT in `.kiro/specs/`, ignore this check."
+  }
+}

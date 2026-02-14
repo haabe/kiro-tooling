@@ -1,6 +1,6 @@
 # Git Hooks
 
-This directory contains git hooks for the Node Pulse Tracker project to ensure code quality and prevent broken commits.
+This directory contains git hooks for the project to ensure code quality and prevent broken commits.
 
 ## Available Hooks
 

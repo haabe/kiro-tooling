@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Test File Setup Reminder",
+  "description": "Reminds to link PBT properties and use real implementations when creating test files",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": ["src/**/*.test.*"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A new test file was created. Ensure:\n\n1. Link PBT properties to design doc: `**Validates: Requirements X.Y**`\n2. Use real implementations — no mocking of code under test\n3. Configure minimum 100 iterations for property tests (`numRuns: 100`)\n4. Use `pnpm test` to run (no `--run` flag)\n5. Refer to `.kiro/steering/testing-patterns.md` for project generators and patterns"
+  }
+}

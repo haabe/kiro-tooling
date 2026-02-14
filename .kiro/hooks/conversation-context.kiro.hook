@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Conversation Context",
+  "description": "Injects core project rules and spec-reading reminder at conversation start",
+  "version": "1",
+  "when": {
+    "type": "promptSubmit"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before responding, remember:\n\n- If executing a spec task: read requirements.md → design.md → tasks.md first\n- Data flow: User → React Components → Zustand Store (Immer) → Zod Validation → IndexedDB\n- Master output node is sacred — one per project, undeletable\n- All state changes go through Zustand store, never direct DOM manipulation\n- Re-read spec files every 3-5 tasks or when switching subsystems\n- Use `pnpm test` (no --run flag), `pnpm validate` for full CI gate\n- Refer to `.kiro/steering/project.md` for tech stack and structure details"
+  }
+}

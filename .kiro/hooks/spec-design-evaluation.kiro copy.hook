@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Spec Design Evaluation",
+  "description": "Triggers evaluation when a spec design document is created",
+  "version": "2",
+  "when": {
+    "type": "fileCreated",
+    "patterns": ["**/.kiro/specs/**/design.md"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A spec design document was created. Evaluate it:\n\n1. **Architecture**: Fits Zustand + Immer + Zod + IndexedDB stack? ReactFlow compatible?\n2. **Integration**: Entry point chain specified (index.html → main.tsx → App.tsx)? Store wiring documented? Persistence integration detailed?\n3. **Correctness properties**: Testable? Linked to acceptance criteria? Universally quantified?\n4. **project criteria** (see `.kiro/steering/spec-phases.md`):\n   - IndexedDB private browsing handled\n   - Accessibility (Riley persona) not deferred\n   - No orphaned components\n\nIf critical design gaps found, flag them as blockers before implementation."
+  }
+}

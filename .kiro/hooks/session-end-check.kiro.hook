@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Session End Check",
+  "description": "Runs final validation and writes continuation summary when agent session ends",
+  "version": "1",
+  "when": {
+    "type": "agentStop"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The session is ending. Determine the current state and act accordingly:\n\n**If work is COMPLETE (task fully done):**\n1. Run `pnpm run validate` (typecheck + lint + test)\n2. Check for orphaned exports (new functions/components not imported anywhere)\n3. Update task status to `completed` via taskStatus tool\n\n**If work is MID-PROGRESS (task partially done):**\n1. Update task status to `in_progress` via taskStatus tool\n2. Write a brief continuation summary in the conversation:\n   - What was completed\n   - What remains\n   - Any pending decisions or blockers\n   - Files modified so far\n\nThis ensures the next session can resume without context loss."
+  }
+}

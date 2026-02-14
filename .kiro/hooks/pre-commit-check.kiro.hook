@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Pre-Commit Check",
+  "description": "Runs full validation, code quality audit, and orphaned code detection on demand",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Run the full pre-commit validation suite:\n\n1. **Full validation**: `pnpm run validate` (typecheck + lint + test)\n2. **`any` type audit**: Search `src/` for `any` types — report and fix\n3. **Hardcoded values audit**: Search component CSS for hardcoded hex/rgb values not using `var(--token)`\n4. **Orphaned exports**: Check for exported functions/components not imported anywhere\n5. **TODO/FIXME audit**: Search `src/` for TODO or FIXME comments — resolve or file to backlog\n6. **Barrel exports**: Verify `index.ts` files are up to date with actual exports\n\nReport results grouped by category. Fix any issues found, then re-run validation until clean."
+  }
+}

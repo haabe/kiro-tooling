@@ -99,7 +99,7 @@ import { test } from 'vitest';
 import { fc } from 'fast-check';
 import { generateId } from './id-generator'; // Doesn't exist yet!
 
-// Feature: web-tracker-daw, Property 5: All node IDs are unique
+// Feature: project, Property 5: All node IDs are unique
 // Validates: Requirements 1.2 - Each node must have unique identifier
 test.prop([fc.integer({ min: 1, max: 1000 })], { numRuns: 100 })(
   'Property 5: generateId produces unique IDs',

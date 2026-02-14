@@ -315,7 +315,7 @@ AND older actions are discarded
 
 **Example**:
 ```markdown
-## Spec Update: web-tracker-daw
+## Spec Update: project
 
 **Date**: 2024-02-07
 **Changes**: Added undo/redo support
@@ -362,7 +362,7 @@ last_updated: 2024-02-07
 
 **In CHANGELOG.md**:
 ```markdown
-# Changelog: web-tracker-daw
+# Changelog: project
 
 ## [1.2.0] - 2024-02-07
 ### Added

@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Vibe Check",
+  "description": "On-demand visual, interaction, and architecture prevention checklist",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Run the vibe-coded prevention checklist:\n\n**Visual:**\n- [ ] Spacing follows 8-point grid (no random values)\n- [ ] Border radius consistent per component category\n- [ ] Colors from palette only (no ad-hoc hex values)\n- [ ] Typography follows type ramp\n- [ ] Icons proportional, from one set\n\n**Interaction:**\n- [ ] Every button/link/toggle works (no `href=\"#\"`)\n- [ ] Async operations have loading states\n- [ ] Animations subtle with proper easing (or absent)\n- [ ] Keyboard navigation works throughout\n- [ ] Focus styles visible via `:focus-visible`\n\n**Architecture:**\n- [ ] One pattern per concern (no mixed approaches)\n- [ ] No duplicated logic across files\n- [ ] Naming conventions consistent\n- [ ] No orphaned/unused exports\n\n**Responsiveness:**\n- [ ] Works at 320px, 768px, 1024px, 1440px\n- [ ] Text never overflows container\n\nReport results. Fix any issues found. Refer to `.kiro/steering/vibe-principles.md` for details."
+  }
+}

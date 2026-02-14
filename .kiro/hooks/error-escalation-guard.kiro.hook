@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Error Escalation Guard",
+  "description": "Prevents premature file/code deletion by enforcing the 4-level error escalation workflow",
+  "version": "1.0",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before executing this write operation, check if it involves:\n- Deleting files (deleteFile tool)\n- Removing substantial code blocks (>10 lines)\n- Commenting out failing tests\n- Disabling linting rules\n- Removing type annotations\n\n**If YES, verify the Error Escalation Workflow was followed:**\n\n**Level 1 (Direct Fix):** Was an obvious fix attempted?\n**Level 2 (Alternative Approach):** Was a different solution strategy tried?\n**Level 3 (Research):** Was Context7 + web research conducted for best practices?\n**Level 4 (User Consultation):** Did the user explicitly approve this deletion?\n\n**If all 4 levels completed:** Proceed with the operation.\n**If any level skipped:** STOP and follow the Error Handling Workflow (.kiro/steering/error-handling-workflow.md) before proceeding.\n\n**Exceptions (proceed without escalation):**\n- Duplicate files created by mistake in same session\n- Temporary debug code (console.logs, commented blocks)\n- Scaffolding code explicitly marked as placeholder\n\n**If NOT a deletion/removal operation:** Proceed normally."
+  }
+}

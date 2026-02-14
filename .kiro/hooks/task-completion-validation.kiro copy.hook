@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Task Completion Validation",
+  "description": "Validates tasks marked complete meet all acceptance criteria",
+  "version": "3",
+  "when": {
+    "type": "postToolUse",
+    "toolTypes": ["spec"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A spec tool was just used (likely taskStatus to mark a task complete). Check if any task was just marked complete (status changed to 'completed').\n\n**If a task was marked complete, validate:**\n1. All files specified in task exist and contain expected changes\n2. Run getDiagnostics on modified files — zero errors\n3. All tests pass (unit + property if applicable)\n4. All task acceptance criteria met\n5. If UI task: feature visible in browser, no console errors\n6. If new component: wired to parent, store connected, CSS imported\n\n**If validation fails:** Revert task to in-progress, list issues, provide fix steps.\n**If no task was marked complete:** No action needed."
+  }
+}

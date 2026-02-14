@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Git pre-commit hook for Node Pulse Tracker
+# Git pre-commit hook for Project
 #
 # This hook runs the validation pipeline before allowing commits.
 # It ensures that all code meets the project's quality standards:

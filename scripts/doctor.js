@@ -63,7 +63,7 @@ function parseVersion(version) {
   return null;
 }
 
-console.log('\n🩺 Node Pulse Tracker - Environment Check\n');
+console.log('\n🩺 Project- Environment Check\n');
 console.log('─'.repeat(50));
 
 let allPassed = true;

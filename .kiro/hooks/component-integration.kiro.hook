@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Component Integration Reminder",
+  "description": "Reminds to wire new components to parent, store, CSS, and barrel exports",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": ["src/components/**/*.tsx"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A new component file was created. Before moving on, ensure:\n\n1. Import in parent component or App.tsx — no orphaned components\n2. Connect to Zustand store via `useStore()` if it needs state\n3. Import co-located CSS file (ComponentName.css)\n4. Update barrel export in the nearest `index.ts`\n\nIf this is a sub-component only used by its parent, wiring to App.tsx is not needed — just ensure the parent imports it."
+  }
+}

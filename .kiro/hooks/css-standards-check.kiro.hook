@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "CSS Standards Check",
+  "description": "Injects design token and CSS standards before writing CSS files",
+  "version": "1",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "You are about to write a file. If it is a CSS file in `src/`, ensure:\n\n- Use `var(--token)` for all colors, spacing, radii — no hardcoded hex/rgb values\n- 8-point grid: all spacing multiples of 8px (4px for tight spaces)\n- Logical properties: `margin-inline` not `margin-left/right`, `padding-block` not `padding-top/bottom`\n- Container queries for component responsiveness, media queries only for app-level layout\n- `:focus-visible` not `:focus` for keyboard focus styles\n- No `!important` — fix specificity instead\n- Refer to `.kiro/steering/css-reference.md` for token names and patterns\n\nIf the file is NOT a `.css` file in `src/`, ignore this check."
+  }
+}

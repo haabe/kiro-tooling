@@ -874,7 +874,7 @@ test('component displays nodes', () => {
 Every property test MUST include a comment linking to acceptance criteria:
 
 ```typescript
-// Feature: web-tracker-daw, Property 5: All node IDs are unique
+// Feature: project, Property 5: All node IDs are unique
 // Validates: Requirements 1.2 - Each node must have a unique identifier
 test.prop([fc.array(nodeArb)], { numRuns: 100 })(
   'Property 5: All node IDs are unique',

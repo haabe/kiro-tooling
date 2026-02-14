@@ -127,7 +127,7 @@ Can you prove it's met?
 
 **Property Test**:
 ```typescript
-// Feature: web-tracker-daw, Property 5: All node IDs are unique
+// Feature: project, Property 5: All node IDs are unique
 // Validates: Requirements 1.2 - Each node must have unique identifier
 test.prop([fc.array(nodeArb)], { numRuns: 100 })(
   'Property 5: All node IDs are unique',

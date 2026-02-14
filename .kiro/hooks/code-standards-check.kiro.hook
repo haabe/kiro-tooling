@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "TypeScript Standards Check",
+  "description": "Injects TypeScript code standards before writing .ts/.tsx files",
+  "version": "1",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "You are about to write a TypeScript file. Before proceeding, ensure the code follows these rules:\n\n- No `any` types — use proper types or `unknown`\n- No `async` without `await`\n- No `forEach` — use `for...of`\n- No `var` — use `const` or `let`\n- Explicit return types on all exported functions\n- Named exports only (except App.tsx)\n- Guard clauses — return early, avoid deep nesting\n- Descriptive parameter names (not `x`, `d`, `cb`)\n- Import order: external → internal `@/` → `import type`\n\nIf the file being written is NOT a `.ts` or `.tsx` file in `src/`, ignore this check."
+  }
+}

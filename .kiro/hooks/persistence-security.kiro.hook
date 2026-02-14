@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Persistence Security Check",
+  "description": "Injects security rules before writing persistence layer files",
+  "version": "1",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "You are about to write a file. If it is in `src/persistence/`, ensure:\n\n- Validate ALL data from IndexedDB with Zod schemas on load — never trust stored data\n- Handle private browsing gracefully: detect IndexedDB unavailability, fall back to memory adapter\n- No direct trust of stored data — it could be corrupted or tampered\n- Wrap IndexedDB operations in try/catch with meaningful error logging\n- Test with `fake-indexeddb` in tests\n\nIf the file is NOT in `src/persistence/`, ignore this check."
+  }
+}

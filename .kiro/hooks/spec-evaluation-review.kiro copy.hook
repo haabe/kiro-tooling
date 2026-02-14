@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Spec Evaluation Review",
+  "description": "Triggers evaluation when a new spec requirements document is created",
+  "version": "2",
+  "when": {
+    "type": "fileCreated",
+    "patterns": ["**/.kiro/specs/**/requirements.md"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A new spec requirements document was created. Evaluate it:\n\n1. **Product Trio perspective**: Business value clear? User need validated? Technical feasibility confirmed?\n2. **project criteria** (see `.kiro/steering/spec-phases.md`):\n   - Personas addressed (which of Alex, Sam, Jordan, Riley, Morgan?)\n   - IndexedDB persistence considered (private browsing fallback?)\n   - Master output constraints documented if relevant\n   - Accessibility explicit (Riley persona)\n3. **Content completeness**: Evidence-based? Testable acceptance criteria? Value proposition clear?\n\nIf critical gaps found, list them as action items before implementation begins."
+  }
+}

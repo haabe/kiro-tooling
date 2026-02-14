@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Zero Tolerance Validation",
+  "description": "Context-aware validation after write operations: typecheck for TS, lint for code, full validate for task completion",
+  "version": "3.0",
+  "when": {
+    "type": "postToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A write operation completed. Validate based on file type:\n\n**Non-code files (.md, .json, .yaml, .kiro.hook):** No validation needed — continue.\n\n**TypeScript files (.ts, .tsx):**\n1. Run `pnpm run typecheck`\n2. Run `pnpm run lint`\n3. If TDD RED phase (test file written but no implementation yet): skip running tests\n4. If GREEN phase (implementation exists): run `pnpm test`\n\n**CSS files (.css):**\n1. Run `pnpm run lint`\n\n**Task/phase completion:**\n1. Run `pnpm run validate` (typecheck + lint + test — all must pass)\n\n**Fix process:** TypeScript errors first → lint errors → test failures. Re-run after each fix until zero errors.\n\n**Never** continue to next task with errors present."
+  }
+}

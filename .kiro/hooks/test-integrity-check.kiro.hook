@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "PBT Integrity Check",
+  "description": "Injects property-based testing rules before writing test files",
+  "version": "1",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "You are about to write a test file. Before proceeding, ensure:\n\n- No mocking of code under test — test REAL implementations\n- Minimum 100 iterations for property-based tests (`numRuns: 100`)\n- Link properties to design doc: `**Validates: Requirements X.Y**`\n- Write smart generators that constrain to valid input space\n- Use `pnpm test` to run (no `--run` flag needed)\n- Co-locate tests: `foo.ts` → `foo.test.ts`, properties → `foo.property.test.ts`\n- No `any` types in test code\n\nIf the file being written is NOT a test file (`*.test.*` or `*.property.test.*`), ignore this check."
+  }
+}

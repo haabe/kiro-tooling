@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Design Token Audit",
+  "description": "Checks for hardcoded values after CSS file writes",
+  "version": "1",
+  "when": {
+    "type": "postToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A write operation completed. If a CSS file in `src/` was written, audit for design token violations:\n\n1. Grep for hardcoded hex values: `#[0-9a-fA-F]{3,8}` (should use `var(--color-*)`)\n2. Grep for non-grid spacing: values not multiples of 4/8 in px (should use `var(--space-*)`)\n3. Grep for physical properties: `margin-left`, `margin-right`, `padding-left`, `padding-right` (should use logical properties)\n\nIf violations found, list them with suggested token replacements.\nIf the written file is NOT a CSS file in `src/`, ignore this check."
+  }
+}

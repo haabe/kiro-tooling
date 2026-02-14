@@ -72,7 +72,7 @@ Before executing ANY task, read these files in order:
 ### Task Execution Prompt Template
 
 ```
-I'm executing Task X.Y from the web-tracker-daw spec.
+I'm executing Task X.Y from the project spec.
 
 **Context**:
 - Feature: [Feature name from requirements]
